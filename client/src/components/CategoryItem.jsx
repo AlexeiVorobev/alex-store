@@ -3,20 +3,20 @@ import styled from "styled-components"
 const Container = styled.div`
     flex: 1;
     position: relative;
-    margin: 3px;
+    margin: 0 8px;
     height: 70vh;
     cursor: pointer;
     overflow: hidden;
 
     &:hover img{
         transform: scale(1.1);
-        transition: all 0.2s ease-in-out;
     }
 `
 const Image = styled.img`
 width: 100%;
 height: 100%;
 object-fit: cover;
+transition: all 0.5s ease-in-out;
 `
 const Info = styled.div`
 position: absolute;
@@ -33,6 +33,7 @@ flex-direction: column;
 const Title = styled.h1`
     color: white;
     margin-bottom: 20px;
+    font-size: 2.25rem;
 `
 
 export default function CategoryItem({item}) {
