@@ -4,17 +4,17 @@ import { FavoriteBorderOutlined, Search, ShoppingCartOutlined } from "@material-
 import { Badge } from "@material-ui/core";
 
 const Container = styled.div`
-  /* border-bottom: 1px solid #eee; */
-  position: absolute;
+  border-bottom: 1px solid #eee;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
   width: 100%;
-  /* background-color: white; */
+  background-color: white;
 `;
 
 const Wrapper = styled.div`
-  padding: 20px 20px;
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

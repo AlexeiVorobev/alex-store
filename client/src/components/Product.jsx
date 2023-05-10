@@ -17,7 +17,7 @@ const Icon = styled.div`
   cursor: pointer;
   position: absolute;
   right: 12px;
-  top: 12px;
+  bottom: 12px;
   transition: all 0.2s ease;
   font-size: 40px;
 
@@ -28,7 +28,6 @@ const Icon = styled.div`
 `;
 
 const Title = styled.div`
-    margin-top: 10px;
     margin-bottom: 20px;
     color: gray;
 `;
@@ -37,19 +36,25 @@ const Price = styled.div``;
 
 const Info = styled.div`
     padding: 20px;
+    position: relative;
 `;
 
 const Container = styled.div`
   margin: 8px;
-  min-width: 280px;
   border: 1px solid #ccc;
   overflow: hidden;
-  max-width: 280px;
+  width: 316px;
   cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
 
   &:hover ${Icon} {
     opacity: 1;
   }
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
 `;
 
 const ImageContainer = styled.div`
@@ -62,6 +67,8 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   height: 100%;
+  width: 100%;
+  object-fit: cover;
 `;
 
 const Product = ({ item }) => {
@@ -69,11 +76,11 @@ const Product = ({ item }) => {
     <Container>
       <ImageContainer>
         <Image src={item.img} />
-        <Icon>
-          <FavoriteBorderOutlined style={{fontSize: "30px"}} />
-        </Icon>
       </ImageContainer>
       <Info>
+        <Icon>
+          <FavoriteBorderOutlined style={{fontSize: "28px"}} />
+        </Icon>
         <Title>{item.name ? item.name : "Untitled"}</Title>
         <Price>1000 ₽</Price>
       </Info>
