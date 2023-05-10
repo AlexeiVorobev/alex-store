@@ -41,8 +41,15 @@ const Input = styled.input`
 `;
 
 const Logo = styled.h1`
-  font-weight: bold;
+  
+
+  & a {
+    font-weight: bold;
   font-family: "Italiana";
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  }
 `;
 
 const Left = styled.div`
@@ -78,7 +85,7 @@ export default function Header() {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>ALEX</Logo>
+          <Logo><a href="">ALEX</a></Logo>
         </Center>
         <Right>
           <MenuItem>SIGN IN</MenuItem>

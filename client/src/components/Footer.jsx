@@ -3,12 +3,16 @@ import styled from "styled-components";
 import VK from "./VK";
 
 const Container = styled.div`
+   background-color: #222;
+`;
+
+const Wrapper = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
-  background-color: #222;
   color: gray;
 	padding-top: 20px;
-	
-`;
+`
 
 const Left = styled.div`
   flex: 1;
@@ -77,45 +81,44 @@ gap: 8px;
 const Footer = () => {
   return (
     <Container>
-      <Left>
-        <Logo>ALEX</Logo>
-        <Desc>
-          ALEX – это комфортный интернет-шопинг и более 20 розничных
-          магазинов. 20 лет мы выпускаем одежду в стиле сasual для любых
-          ситуаций, времени года и погоды, помогая покупателям создать свой
-          собственный, неповторимый образ.
-        </Desc>
-        <SocialContainer>
-          <SocialIcon>
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon>
-            <VK />
-          </SocialIcon>
-          <SocialIcon>
-            <Instagram />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>Useful links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Men fashion</ListItem>
-          <ListItem>Women fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-					<ListItem>Wishlist</ListItem>
-					<ListItem>Track order</ListItem>
-					<ListItem>Terms</ListItem>
-        </List>
-      </Center>
-      <Right>
-				<Title>Contacts</Title>
-				<Contact><Room /> Nevsky Prospect 40, Saint-Petersburg 191023</Contact>
-				<Contact><Phone /> +7 (812) 456 78 90</Contact>
-				<Contact><Mail /> contact@alexfashion.com</Contact>
-			</Right>
+      <Wrapper>
+        <Left>
+          <Logo>ALEX</Logo>
+          <Desc>
+          Experience the pure expression of elegance and sophistication with Alex, your ultimate destination for premium clothing and accessories. Discover our exquisite range of finest-quality garments and elevate your style to the next level.
+          </Desc>
+          <SocialContainer>
+            <SocialIcon>
+              <Facebook />
+            </SocialIcon>
+            <SocialIcon>
+              <VK />
+            </SocialIcon>
+            <SocialIcon>
+              <Instagram />
+            </SocialIcon>
+          </SocialContainer>
+        </Left>
+        <Center>
+          <Title>Useful links</Title>
+          <List>
+            <ListItem>Home</ListItem>
+            <ListItem>Cart</ListItem>
+            <ListItem>Men fashion</ListItem>
+            <ListItem>Women fashion</ListItem>
+            <ListItem>Accessories</ListItem>
+                  <ListItem>Wishlist</ListItem>
+                  <ListItem>Track order</ListItem>
+                  <ListItem>Terms</ListItem>
+          </List>
+        </Center>
+        <Right>
+                <Title>Contacts</Title>
+                <Contact><Room /> Nevsky Prospect 40, Saint-Petersburg 191023</Contact>
+                <Contact><Phone /> +7 (812) 456 78 90</Contact>
+                <Contact><Mail /> contact@alexfashion.com</Contact>
+              </Right>
+      </Wrapper>
     </Container>
   );
 };
