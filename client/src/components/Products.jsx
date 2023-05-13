@@ -7,6 +7,11 @@ padding: 20px;
 display: flex;
 flex-wrap: wrap;
 justify-content: start;
+
+@media only screen and (max-width: 500px) {
+  justify-content: center;
+  flex-direction: column;
+}
 `
 
 const Products = () => {

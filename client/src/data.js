@@ -1,4 +1,4 @@
-import Girl01 from "./assets/img/girl_01.png";
+import Girl01 from "./assets/img/girl_04.png";
 import Girl02 from "./assets/img/girl_02.png";
 import Girl03 from "./assets/img/girl_03.png";
 
@@ -20,7 +20,7 @@ export const sliderItems = [
   {
     id: 3,
     img: Girl03,
-    title: "LOUNGEWEAR LOVE",
+    title: "Loungewear love",
     desc: "Everyone needs a hoodie.",
     bg: "#ebfcfa",
   },
@@ -47,7 +47,7 @@ export const categories = [
 export const popularProducts = [
   {
     id: 1,
-    name: `Shirt "Leave the Road" `,
+    name: `Premium T-shirt with a print `,
     img: "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
   },
   {

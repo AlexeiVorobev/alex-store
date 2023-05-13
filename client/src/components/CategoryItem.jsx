@@ -17,6 +17,10 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 transition: all 0.5s ease-in-out;
+
+@media only screen and (max-width: 500px) {
+    height: 25vh;
+  }
 `
 const Info = styled.div`
 position: absolute;

@@ -55,11 +55,17 @@ const Container = styled.div`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+    padding: 0;
+}
+
 `;
 
 const ImageContainer = styled.div`
   display: flex;
-  height: 350px;
+  padding: 20px;
+  /* height: 400px; */
   align-items: center;
   justify-content: center;
   position: relative;

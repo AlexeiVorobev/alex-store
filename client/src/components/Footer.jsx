@@ -12,6 +12,10 @@ const Wrapper = styled.div`
   display: flex;
   color: gray;
 	padding-top: 20px;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `
 
 const Left = styled.div`

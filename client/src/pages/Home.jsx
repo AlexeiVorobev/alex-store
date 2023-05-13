@@ -7,16 +7,19 @@ import styled from "styled-components";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 
-const H1 = styled.h1`
-
+const Title = styled.h1`
   font-weight: 500;
-  margin-top: 20px;
-  margin-left: 40px;
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-bottom: 0px;
 `
 
 const Wrapper = styled.div`
   max-width: 1400px;
   margin: 0 auto;
+
+  @media only screen and (max-width: 500px) {
+  }
 `
 
 export default function Home() {
@@ -26,7 +29,7 @@ export default function Home() {
       <Carousel />
       <Wrapper>
         <Categories />
-        <H1>Popular Products</H1>
+        <Title>Popular Products</Title>
         <Products />
         <Newsletter />
       </Wrapper>

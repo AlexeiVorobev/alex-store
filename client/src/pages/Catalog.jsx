@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 
 const Wrapper = styled.div`

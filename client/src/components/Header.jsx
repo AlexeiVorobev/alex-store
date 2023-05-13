@@ -1,16 +1,52 @@
 import React from "react";
 import styled from "styled-components";
-import { FavoriteBorderOutlined, Search, ShoppingCartOutlined } from "@material-ui/icons";
+import {
+  ArrowDropDown,
+  Close,
+  FavoriteBorderOutlined,
+  Menu,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
+import { useState, useRef } from "react";
 
 const Container = styled.div`
-  border-bottom: 1px solid #eee;
+
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
   width: 100%;
-  background-color: white;
+  background-color: transparent;
+  transition: background-color 0.1s ease;
+
+  &.white {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+  }
+
+  @media only screen and (max-width: 500px) {
+    width: 100vw;
+  }
+`;
+
+const Language = styled.span`
+  font-size: 14px;
+  color: gray;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #222;
+  }
+
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -21,10 +57,16 @@ const Wrapper = styled.div`
 `;
 
 const SearchContainer = styled.div`
+  position: absolute;
   display: flex;
-  border: 1px solid lightgray;
+  justify-content: center;
   align-items: center;
-  margin-left: 25px;
+  width: 100%;
+  height: 140px;
+  border-bottom: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 3px 6px;
+  background-color: white;
+  top: 71px;
   padding: 5px;
 `;
 
@@ -33,22 +75,45 @@ const MenuItem = styled.div`
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
-  margin-left: 25px;
+  margin-left: 20px;
+
+  @media only screen and (max-width: 500px) {
+    margin-left: 15px;
+  }
+
+  &:hover, svg:hover {
+    color: #222;
+  }
+
+  &.hide-on-mobile {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
 `;
 
-const Input = styled.input`
+const SearchField = styled.input`
   border: none;
+  border-bottom: 1px solid lightgray;
+  width: 80%;
+  max-width: 800px;
+  height: 40px;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+    height: 50px;
+  }
 `;
 
 const Logo = styled.h1`
-  
-
   & a {
     font-weight: bold;
-  font-family: "Italiana";
-  cursor: pointer;
-  color: black;
-  text-decoration: none;
+    font-family: "Italiana";
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
   }
 `;
 
@@ -66,29 +131,150 @@ const Right = styled.div`
   align-items: center;
   justify-content: end;
   flex: 1;
+
+  @media only screen and (max-width: 500px) {
+  }
 `;
 
-const Language = styled.span`
-  font-size: 14px;
+const SearchContainerWrapper = styled.div`
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const MenuBtn = styled.button`
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: gray;
+
+  @media only screen and (max-width: 500px) {
+    display: block;
+  }
+`;
+
+const SearchBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  color: gray;
   cursor: pointer;
+
+  &:hover {
+    color: #222;
+  }
+
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
+`;
+
+const MobileClose = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 15px;
+  border-bottom: 1px solid lightgray;
+
+  & button {
+    border: none;
+    background-color: transparent;
+    color: gray;
+  }
+`;
+
+const MobileMenuItem = styled.div`
+  padding: 15px;
+  border-bottom: 1px solid lightgray;
+  color: gray;
+
+  &.language {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & ${Language} {
+    display: flex;
+    margin-right: 10px;
+  }
+`;
+
+const MobileMenu = styled.div`
+  position: fixed;
+  
+  z-index: 3;
+  top: 0;
+  left: ${props => props.isActive ? 0 : "-100vw"};
+  transition: all 0.5s ease;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  opacity: ${props => props.isActive ? 1 : 0};
+
 `;
 
 export default function Header() {
+  const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false)
+  const mobileMenu = useRef();
+
+  const handleClickSearch = () => {
+    setShowSearch(!showSearch);
+    header.classList.add("white");
+  };
+
+  const handleClickOutside = (e) => {
+    if (e.target.id === "searchWrapper") {
+      setShowSearch(false);
+      if (window.pageYOffset <= 0)
+      header.classList.remove("white");
+    }
+  };
+
   return (
-    <Container>
+    <Container id="header" classList='white'>
+      {showSearch && (
+        <SearchContainerWrapper
+          id="searchWrapper"
+          onClick={(e) => handleClickOutside(e)}
+        >
+          <SearchContainer>
+            <SearchField type="search" placeholder="Search..."></SearchField>
+          </SearchContainer>
+        </SearchContainerWrapper>
+      )}
+      <MobileMenu ref={mobileMenu} isActive={showMenu}>
+        <MobileClose>
+          <button onClick={() => setShowMenu(false)}>
+            <Close />
+          </button>
+        </MobileClose>
+        <SearchField type="search" placeholder="Search..."></SearchField>
+        <MobileMenuItem>Home</MobileMenuItem>
+        <MobileMenuItem>Catalog</MobileMenuItem>
+        <MobileMenuItem>Login</MobileMenuItem>
+        <MobileMenuItem className="language">
+          <div>Language</div>
+          <Language className="mobile-only">EN <ArrowDropDown/></Language>
+        </MobileMenuItem>
+      </MobileMenu>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
-          <SearchContainer>
-            <Input></Input>
-            <Search style={{ color: "gray", fontSize: "16px" }} />
-          </SearchContainer>
+          <SearchBtn>
+            <SearchOutlined onClick={handleClickSearch} />
+          </SearchBtn>
+          <MenuItem className="hide-on-mobile">CATALOG</MenuItem>
+          <MenuBtn onClick={() => setShowMenu(true)}>
+            <Menu />
+          </MenuBtn>
+          <Language>EN <ArrowDropDown/></Language>
         </Left>
         <Center>
-          <Logo><a href="">ALEX</a></Logo>
+          <Logo>
+            <a href="">ALEX</a>
+          </Logo>
         </Center>
         <Right>
-          <MenuItem>SIGN IN</MenuItem>
+          <MenuItem className="hide-on-mobile">SIGN IN</MenuItem>
           <MenuItem>
             <FavoriteBorderOutlined color="action" />
           </MenuItem>
@@ -101,4 +287,13 @@ export default function Header() {
       </Wrapper>
     </Container>
   );
+}
+
+window.onscroll = () => {
+  const header = document.getElementById('header')
+  if (window.pageYOffset > 0) {
+    header.classList.add("white");
+  } else {
+    header.classList.remove("white");
+  }
 }
