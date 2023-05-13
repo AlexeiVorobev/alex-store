@@ -6,12 +6,13 @@ import Catalog from './pages/Catalog'
 import ProductPage from './pages/ProductPage'
 import Register from './pages/MyAccount'
 import Cart from './pages/Cart'
+import MyAccount from './pages/MyAccount'
 
 function App() {
 
   return (
     <>
-     <Home />
+     <Catalog />
     </>
   )
 }

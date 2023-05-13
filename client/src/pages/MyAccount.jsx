@@ -15,8 +15,10 @@ const Content = styled.div`
 const Container = styled.div`
   width: 340px;
   margin: 0 auto;
-  margin-top: 160px;
+  margin-top: 300px;
+  margin-bottom: 200px;
   padding: 0 auto;
+
 `;
 
 const Buttons = styled.div`

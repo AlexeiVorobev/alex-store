@@ -27,6 +27,9 @@ const FilterContainer = styled.div`
 const Filter = styled.div`
   margin: 0 20px;
   margin-bottom: 0;
+  margin-left: 0;
+  margin-top: 20px;
+
 `;
 
 const FilterText = styled.span`
@@ -75,7 +78,7 @@ const CategoryItem = styled.div`
   border-bottom: 1px solid #cccc;
   cursor: pointer;
   color: gray;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 400;
   font-size: 16px;
 
@@ -87,7 +90,20 @@ const CategoryItem = styled.div`
 const Main = styled.div`
   display: flex;
   margin: 0 20px;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
+
+const CheckboxGroup = styled.div`
+  @media only screen and (max-width: 500px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 4px;
+    margin-bottom: 20px;
+  }
+`
 
 const Catalog = () => {
   return (
@@ -110,45 +126,49 @@ const Catalog = () => {
             <CategoryItem>Accessories</CategoryItem>
 
             <h4>Size</h4>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />
-              XS
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />S
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />M
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />L
-            </label>
+            <CheckboxGroup>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />
+                XS
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />S
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />M
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />L
+              </label>
+            </CheckboxGroup>
 
             <h4>Color</h4>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Beige
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Blue
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Red
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Milky
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Pink
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Peach
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />White
-            </label>
-            <label htmlFor="">
-              <input type="checkbox" name="" id="" />Gray
-            </label>
+            <CheckboxGroup>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Beige
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Blue
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Red
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Milky
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Pink
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Peach
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />White
+              </label>
+              <label htmlFor="">
+                <input type="checkbox" name="" id="" />Gray
+              </label>
+            </CheckboxGroup>
           </Categories>
           <ProductList>
             <FilterContainer>
