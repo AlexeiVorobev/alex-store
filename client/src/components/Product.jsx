@@ -25,6 +25,10 @@ const Icon = styled.div`
     color: #222;
     transform: scale(1.1);
   }
+
+  @media only screen and (max-width: 500px) {
+    opacity: 1;
+  }
 `;
 
 const Title = styled.div`
