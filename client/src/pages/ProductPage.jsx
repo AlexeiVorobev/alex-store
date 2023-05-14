@@ -8,6 +8,11 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 50px;
   display: flex;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    padding: 10px;
+  }
 `;
 
 const Container = styled.div`
@@ -16,21 +21,37 @@ const Container = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+
+  @media only screen and (max-width: 500px) {
+    
+  }
 `;
 const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+
+  @media only screen and (max-width: 500px) {
+   height: 40vh;
+  }
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 50px;
+
+  @media only screen and (max-width: 500px) {
+    padding: 10px;
+  }
 `;
 
 const Title = styled.h1`
   font-weight: 200;
   margin-bottom: 20px;
+
+  @media only screen and (max-width: 500px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const Desc = styled.p`
