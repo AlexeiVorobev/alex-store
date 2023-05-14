@@ -27,7 +27,7 @@ const FilterContainer = styled.div`
 const Filter = styled.div`
   margin: 0 20px;
   margin-bottom: 0;
-  margin-left: 0;
+  margin-left: 20px;
   margin-top: 20px;
 
 `;
@@ -175,7 +175,7 @@ const Catalog = () => {
               <Filter>
                 <FilterText>Sort:</FilterText>
                 <Select>
-                  <Option selected>Newest</Option>
+                  <Option>Newest</Option>
                   <Option>Price (asc)</Option>
                   <Option>Price (desc)</Option>
                 </Select>

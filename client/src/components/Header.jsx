@@ -10,6 +10,7 @@ import {
 } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
 
@@ -73,9 +74,14 @@ const SearchContainer = styled.div`
 const MenuItem = styled.div`
   color: gray;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 14px;f
   cursor: pointer;
   margin-left: 20px;
+
+  & a {
+    text-decoration: none;
+    color: gray;
+  }
 
   @media only screen and (max-width: 500px) {
     margin-left: 15px;
@@ -200,7 +206,6 @@ const MobileMenuItem = styled.div`
 
 const MobileMenu = styled.div`
   position: fixed;
-  
   z-index: 3;
   top: 0;
   left: ${props => props.isActive ? 0 : "-100vw"};
@@ -210,6 +215,10 @@ const MobileMenu = styled.div`
   height: 100vh;
   opacity: ${props => props.isActive ? 1 : 0};
 
+  & a {
+    text-decoration: none;
+    color: gray;
+  }
 `;
 
 export default function Header() {
@@ -249,9 +258,15 @@ export default function Header() {
           </button>
         </MobileClose>
         <SearchField type="search" placeholder="Search..."></SearchField>
-        <MobileMenuItem>Home</MobileMenuItem>
-        <MobileMenuItem>Catalog</MobileMenuItem>
-        <MobileMenuItem>Login</MobileMenuItem>
+        <Link to='/'>
+          <MobileMenuItem>Home</MobileMenuItem>
+        </Link>
+        <Link to='/catalog'>
+          <MobileMenuItem>Catalog</MobileMenuItem>
+        </Link>
+        <Link to='/my-account'>
+          <MobileMenuItem>Login</MobileMenuItem>
+        </Link>
         <MobileMenuItem className="language">
           <div>Language</div>
           <Language className="mobile-only">EN <ArrowDropDown/></Language>
@@ -262,7 +277,7 @@ export default function Header() {
           <SearchBtn>
             <SearchOutlined onClick={handleClickSearch} />
           </SearchBtn>
-          <MenuItem className="hide-on-mobile">CATALOG</MenuItem>
+          <MenuItem className="hide-on-mobile"><Link to='/catalog'>CATALOG</Link></MenuItem>
           <MenuBtn onClick={() => setShowMenu(true)}>
             <Menu />
           </MenuBtn>
@@ -270,18 +285,22 @@ export default function Header() {
         </Left>
         <Center>
           <Logo>
-            <a href="">ALEX</a>
+            <Link to='/'>ALEX</Link>
           </Logo>
         </Center>
         <Right>
-          <MenuItem className="hide-on-mobile">SIGN IN</MenuItem>
+          <MenuItem className="hide-on-mobile"><Link to='/my-account'>SIGN IN</Link></MenuItem>
           <MenuItem>
-            <FavoriteBorderOutlined color="action" />
+            <Link to='/favorite'>
+              <FavoriteBorderOutlined color="action" />
+            </Link>
           </MenuItem>
           <MenuItem>
-            <Badge badgeContent={3} color="primary">
-              <ShoppingCartOutlined color="action" />
-            </Badge>
+            <Link to='/cart'>
+              <Badge badgeContent={3} color="primary">
+                <ShoppingCartOutlined color="action" />
+              </Badge>
+            </Link>
           </MenuItem>
         </Right>
       </Wrapper>

@@ -36,11 +36,13 @@ export const Form = styled.form`
 
 export const Button = styled.button`
     width: 100%;
-    background-color: white;
-    border: 2px solid #333;
+    background-color: #7fbcf1;
+    color: white;
+    text-transform: upper;
     padding: 18px 5px;
     font-size: large;
     cursor: pointer;
+    border: none;
 `
 
 const Login = () => {

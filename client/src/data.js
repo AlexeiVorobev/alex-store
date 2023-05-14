@@ -7,7 +7,7 @@ export const sliderItems = [
     id: 1,
     img: Girl02,
     title: "New collection",
-    desc: "Stop looking like a dork today. Go get some new, fancy stuff.",
+    desc: "Stop looking like a dork. Go get some new, fancy stuff.",
     bg: "#fcf7eb",
   },
   {
@@ -21,7 +21,7 @@ export const sliderItems = [
     id: 3,
     img: Girl03,
     title: "Loungewear love",
-    desc: "Everyone needs a hoodie.",
+    desc: "You know you need one of our hoodies",
     bg: "#ebfcfa",
   },
 ];

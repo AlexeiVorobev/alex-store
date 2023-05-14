@@ -153,7 +153,7 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   width: 100%;
   padding: 18px;
-  background-color: #222;
+  background-color: #7fbcf1;
   border: none;
   color: white;
   font-weight: 600;

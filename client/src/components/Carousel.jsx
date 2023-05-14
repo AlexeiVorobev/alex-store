@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import { useState } from "react";
 import { sliderItems } from "../data";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -179,7 +180,7 @@ export default function Carousel() {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
-              <Button>SHOP NOW</Button>
+              <Link to='/product'><Button>SHOP NOW</Button></Link>
             </InfoContainer>
           </Slide>
         ))}

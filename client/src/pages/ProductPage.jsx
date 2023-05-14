@@ -153,16 +153,16 @@ const ProductPage = () => {
       <Header />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+          <Image src="https://images.pexels.com/photos/4352249/pexels-photo-4352249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
         </ImgContainer>
 
         <InfoContainer>
-          <Title>T-shirt with a print</Title>
+          <Title>Sassy dress</Title>
           <Desc>
             Add a splash of personality to your wardrobe with our stylish
-            t-shirt featuring a captivating print. Crafted from soft, breathable
-            fabric, this t-shirt is comfortable and durable, making it perfect
-            for everyday wear. With its eye-catching design, this t-shirt is
+            dress featuring a captivating pattern. Crafted from soft, breathable
+            fabric, this dress is comfortable and durable, making it perfect
+            for everyday wear. With its eye-catching design, this dress is
             sure to turn heads wherever you go.
           </Desc>
           <Price>1000p</Price>
