@@ -91,8 +91,8 @@ const Product = ({ item }) => {
         <Icon>
           <FavoriteBorderOutlined style={{fontSize: "28px"}} />
         </Icon>
-        <Title>{item.name ? item.name : "Untitled"}</Title>
-        <Price>1000 ₽</Price>
+        <Title>{item.title || "Untitled"}</Title>
+        <Price>{item.price + '₽' || '5000₽'}</Price>
       </Info>
     </Container>
   );

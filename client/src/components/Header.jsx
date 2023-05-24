@@ -74,7 +74,7 @@ const SearchContainer = styled.div`
 const MenuItem = styled.div`
   color: gray;
   font-weight: 500;
-  font-size: 14px;f
+  font-size: 14px;
   cursor: pointer;
   margin-left: 20px;
 
@@ -261,7 +261,7 @@ export default function Header() {
         <Link to='/'>
           <MobileMenuItem>Home</MobileMenuItem>
         </Link>
-        <Link to='/catalog'>
+        <Link to='/catalog/all'>
           <MobileMenuItem>Catalog</MobileMenuItem>
         </Link>
         <Link to='/my-account'>
@@ -277,7 +277,7 @@ export default function Header() {
           <SearchBtn>
             <SearchOutlined onClick={handleClickSearch} />
           </SearchBtn>
-          <MenuItem className="hide-on-mobile"><Link to='/catalog'>CATALOG</Link></MenuItem>
+          <MenuItem className="hide-on-mobile"><Link to='/catalog/all'>CATALOG</Link></MenuItem>
           <MenuBtn onClick={() => setShowMenu(true)}>
             <Menu />
           </MenuBtn>

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
+import { useLocation, Link } from "react-router-dom";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   max-width: 1400px;
@@ -17,6 +19,7 @@ const Title = styled.h1`
   margin: 20px;
   font-weight: 600;
   margin-top: 40px;
+  text-transform: capitalize;
 `;
 
 const FilterContainer = styled.div`
@@ -29,7 +32,6 @@ const Filter = styled.div`
   margin-bottom: 0;
   margin-left: 20px;
   margin-top: 20px;
-
 `;
 
 const FilterText = styled.span`
@@ -54,6 +56,10 @@ const ProductList = styled.div`
 const Categories = styled.div`
   flex: 1;
   padding-right: 50px;
+
+  & a {
+    text-decoration: none;
+  }
 
   & h4 {
     margin-top: 20px;
@@ -103,70 +109,188 @@ const CheckboxGroup = styled.div`
     gap: 10px 4px;
     margin-bottom: 20px;
   }
-`
+`;
 
 const Catalog = () => {
+  const location = useLocation();
+  const cat = location.pathname.split("/")[2];
+  const [filters, setFilters] = useState({
+    sizes: [],
+    colors: [],
+  });
+  const [sort, setSort] = useState("newest");
+
+  const handleFilters = (e) => {
+    const { name, checked } = e.target;
+    const updatedFilters = {
+      ...filters,
+      [name]: checked
+        ? [...filters[name], e.target.value]
+        : filters[name].filter((item) => item !== e.target.value),
+    };
+    setFilters(updatedFilters);
+  };
+
   return (
     <Container>
       <Header />
       <Wrapper>
-        <Title>Catalog</Title>
+        <Title>{cat}</Title>
         <Main>
           <Categories>
-            <CategoryItem>All</CategoryItem>
-            <CategoryItem>New</CategoryItem>
-            <CategoryItem>Sale</CategoryItem>
-            <CategoryItem>Tops/T-shirts</CategoryItem>
-            <CategoryItem>Shirts</CategoryItem>
-            <CategoryItem>Pants/shorts</CategoryItem>
-            <CategoryItem>Dresses</CategoryItem>
-            <CategoryItem>Jackets</CategoryItem>
-            <CategoryItem>Suits</CategoryItem>
-            <CategoryItem>Loungewear</CategoryItem>
-            <CategoryItem>Accessories</CategoryItem>
+            <Link to="/catalog/all">
+              <CategoryItem>All</CategoryItem>
+            </Link>
+            <Link to="/catalog/tops">
+              <CategoryItem>Tops/T-shirts</CategoryItem>
+            </Link>
+            <Link to="/catalog/shirts">
+              <CategoryItem>Shirts</CategoryItem>
+            </Link>
+            <Link to="/catalog/pants">
+              <CategoryItem>Pants/shorts</CategoryItem>
+            </Link>
+            <Link to="/catalog/dresses">
+              <CategoryItem>Dresses</CategoryItem>
+            </Link>
+            <Link to="/catalog/outerwear">
+              <CategoryItem>Outerwear</CategoryItem>
+            </Link>
+            <Link to="/catalog/suits">
+              <CategoryItem>Suits</CategoryItem>
+            </Link>
+            <Link to="/catalog/loungewear">
+              <CategoryItem>Loungewear</CategoryItem>
+            </Link>
+            <Link to="/catalog/accessories">
+              <CategoryItem>Accessories</CategoryItem>
+            </Link>
 
             <h4>Size</h4>
             <CheckboxGroup>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />
+                <input
+                  name="sizes"
+                  value="XS"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
                 XS
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />S
+                <input
+                  name="sizes"
+                  value="S"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                S
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />M
+                <input
+                  name="sizes"
+                  value="M"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                M
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />L
+                <input
+                  name="sizes"
+                  value="L"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                L
               </label>
             </CheckboxGroup>
 
             <h4>Color</h4>
             <CheckboxGroup>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Beige
+                <input
+                  name="colors"
+                  value="beige"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Beige
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Blue
+                <input
+                  name="colors"
+                  value="blue"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Blue
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Red
+                <input
+                  name="colors"
+                  value="red"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Red
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Milky
+                <input
+                  name="colors"
+                  value="milky"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Milky
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Pink
+                <input
+                  name="colors"
+                  value="pink"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Pink
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Peach
+                <input
+                  name="colors"
+                  value="black"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Black
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />White
+                <input
+                  name="colors"
+                  value="white"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                White
               </label>
               <label htmlFor="">
-                <input type="checkbox" name="" id="" />Gray
+                <input
+                  name="colors"
+                  value="gray"
+                  onChange={handleFilters}
+                  type="checkbox"
+                  id=""
+                />
+                Gray
               </label>
             </CheckboxGroup>
           </Categories>
@@ -174,14 +298,14 @@ const Catalog = () => {
             <FilterContainer>
               <Filter>
                 <FilterText>Sort:</FilterText>
-                <Select>
-                  <Option>Newest</Option>
-                  <Option>Price (asc)</Option>
-                  <Option>Price (desc)</Option>
+                <Select onChange={(e) => setSort(e.target.value)}>
+                  <Option value="newest">Newest</Option>
+                  <Option value="price-asc">Price (asc)</Option>
+                  <Option value="price-desc">Price (desc)</Option>
                 </Select>
               </Filter>
             </FilterContainer>
-            <Products />
+            <Products cat={cat} filters={filters} sort={sort} />
           </ProductList>
         </Main>
       </Wrapper>

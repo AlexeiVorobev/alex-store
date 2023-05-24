@@ -6,22 +6,22 @@ export const sliderItems = [
   {
     id: 1,
     img: Girl02,
-    title: "New collection",
-    desc: "Stop looking like a dork. Go get some new, fancy stuff.",
-    bg: "#fcf7eb",
+    title: "New summer collection",
+    desc: "Get your style on point with our new summer collection.",
+    bg: "#fcf7eb"
   },
   {
     id: 2,
     img: Girl01,
-    title: "Summer sale",
-    desc: "Don't compromise on style, brokie. Get flat 30% off for our old collection.",
-    bg: "#fceef1",
+    title: "Spring sale",
+    desc: "Don't compromise on style. Get flat 30% off for our old collection.",
+    bg: "#fceef1"
   },
   {
     id: 3,
     img: Girl03,
     title: "Loungewear love",
-    desc: "You know you need one of our hoodies",
+    desc: "Everyone needs a hoodie. YOU need a hoodie. Go and get one.",
     bg: "#ebfcfa",
   },
 ];
@@ -31,16 +31,19 @@ export const categories = [
     id: 1,
     img: "https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     title: "SHIRTS",
+    cat: "shirts"
   },
   {
     id: 2,
     img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=840&q=80",
     title: "LOUNGEWEAR",
+    cat: "loungewear"
   },
   {
     id: 3,
     img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     title: "DRESSES",
+    cat: "dresses"
   },
 ];
 

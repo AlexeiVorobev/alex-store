@@ -71,7 +71,8 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 80px;
+  /* text-transform: uppercase; */
 
   @media only screen and (max-width: 500px) {
     color: white;
@@ -83,8 +84,8 @@ const Title = styled.h1`
 
 const Description = styled.p`
   margin: 50px 0;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 300;
 
   @media only screen and (max-width: 500px) {
     & {

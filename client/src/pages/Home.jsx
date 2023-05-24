@@ -12,7 +12,7 @@ const Title = styled.h1`
   margin-top: 40px;
   margin-left: 20px;
   margin-bottom: 0px;
-`
+`;
 
 const Wrapper = styled.div`
   max-width: 1400px;
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 500px) {
   }
-`
+`;
 
 export default function Home() {
   return (
@@ -29,8 +29,16 @@ export default function Home() {
       <Carousel />
       <Wrapper>
         <Categories />
-        <Title>Popular Products</Title>
-        <Products />
+        <Title>New Products</Title>
+        <Products
+          cat="all"
+          filters={{
+            sizes: [],
+            colors: [],
+          }}
+          sort="newest"
+          max="8"
+        />
         <Newsletter />
       </Wrapper>
       <Footer></Footer>

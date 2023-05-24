@@ -7,20 +7,21 @@ import Register from "./pages/MyAccount";
 import Cart from "./pages/Cart";
 import MyAccount from "./pages/MyAccount";
 import Favorite from "./pages/Favorite";
-import { HashRouter as Router, Routes,  Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes,  Route } from "react-router-dom";
 import Catalog from './pages/Catalog'
 
 function App() {
+  const user = true
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/catalog/:category" element={<Catalog />} />
           <Route path="/my-account" element={<MyAccount />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </Router>
     </>
