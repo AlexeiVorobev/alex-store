@@ -2,11 +2,12 @@ import { Add, ArrowBack, DeleteOutline, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { useState, useEffect } from "react";
 import {userRequest} from '../requestMethods'
 import {useNavigate} from 'react-router-dom'
+import { addProduct, removeProduct } from "../redux/cartSlice";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -60,6 +61,7 @@ const Image = styled.img`
   width: 180px;
   height: 250px;
   object-fit: cover;
+  cursor: pointer;
 `;
 
 const Details = styled.div`
@@ -73,6 +75,7 @@ const Details = styled.div`
 const ProductName = styled.span`
   font-weight: bold;
   margin-bottom: 2px;
+  cursor: pointer;
 `;
 
 const ProductId = styled.span`
@@ -182,6 +185,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -200,13 +204,17 @@ const Cart = () => {
     }
   }, [stripeToken, cart.total, history])
 
+  const onProductClick = (id) => {
+    navigate(`/product/${id}`)
+  }
+
   return (
     <Container>
       <Header />
       <Wrapper>
         <TitleContainer>
           <Title>Your bag</Title>
-          <BackBtn>
+          <BackBtn onClick={() => navigate(-1)}>
             <ArrowBack />
             CONTINUE SHOPPING
           </BackBtn>
@@ -215,11 +223,11 @@ const Cart = () => {
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product>
+              <Product key={product._id}>
                 <ProductDetail>
-                  <Image src={product.img} />
+                  <Image onClick={() => onProductClick(product._id)} src={product.img} />
                   <Details>
-                    <ProductName>{product.title}</ProductName>
+                    <ProductName onClick={() => onProductClick(product._id)}>{product.title}</ProductName>
                     <ProductId>{product._id}</ProductId>
                     <ProductColor>
                       <b>Color:</b> {product.color}
@@ -235,7 +243,7 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <Right>
-                  <DeleteBtn>
+                  <DeleteBtn onClick={() =>  dispatch(removeProduct(product._id))}>
                     <DeleteOutline />
                   </DeleteBtn>
                   <ProductPrice>

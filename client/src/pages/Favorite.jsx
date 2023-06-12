@@ -19,7 +19,7 @@ const Favorite = () => {
       <Header />
       <Container>
         <Title>Favorite</Title>
-        <Products />
+        
       </Container>
       <Footer/>
     </div>

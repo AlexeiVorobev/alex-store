@@ -233,8 +233,7 @@ export default function Header({fade}) {
     }
   };
 
-  const cartQuantity = useSelector(state => state.cart.quantity)
-  console.log(cartQuantity)
+  const cartQuantity = useSelector(state => state.cart.products.length)
 
   return (
     <Container id="header">

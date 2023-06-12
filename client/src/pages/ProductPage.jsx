@@ -165,6 +165,7 @@ const LikeButton = styled.div`
 
 const ProductPage = () => {
   const location = useLocation();
+  const cart = useSelector((state) => state.cart);
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState(null);
   const [isInCart, setIsInCart] = useState(false);
@@ -179,6 +180,7 @@ const ProductPage = () => {
       setProduct(res.data);
     };
     getProduct();
+    setIsInCart(cart.products.filter(product => product._id === id).length != 0 ? true : false)
   }, [id]);
 
   useEffect(() => {
