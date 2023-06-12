@@ -1,4 +1,7 @@
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
+import { login } from "../redux/apiCalls"
 
 const Container = styled.div`
     width: 100%;
@@ -10,6 +13,11 @@ const Container = styled.div`
         text-align: center;
         margin-top: 30px;
      }
+`
+
+const Error = styled.span`
+    color: red;
+    font-size: 14px;
 `
 
 export const Form = styled.form`
@@ -43,16 +51,32 @@ export const Button = styled.button`
     font-size: large;
     cursor: pointer;
     border: none;
+
+    &:disabled {
+        color: gray;
+        cursor: not-allowed;
+    }
 `
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
+    const {isFetching, error} = useSelector((state) => state.user)
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        login(dispatch, {email, password})
+    }
+    
   return (
     <Container>
         <Form>
-            <input type="email" name="" id="" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" name="" id="" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
         </Form>
-        <Button>Sign in</Button>
+        <Button onClick={handleLogin} disabled={isFetching }>Sign in</Button>
+       {error && <Error>Something went wrong...</Error>}
         <a href="">I forgot my password</a>
     </Container>
   )

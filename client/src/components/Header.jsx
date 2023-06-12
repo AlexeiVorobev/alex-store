@@ -1,4 +1,5 @@
 import React from "react";
+import {useSelector} from "react-redux"
 import styled from "styled-components";
 import {
   ArrowDropDown,
@@ -19,13 +20,9 @@ const Container = styled.div`
   left: 0;
   z-index: 2;
   width: 100%;
-  background-color: transparent;
+  background-color: white;
   transition: background-color 0.1s ease;
-
-  &.white {
-    background-color: white;
-    border-bottom: 1px solid #eee;
-  }
+  border-bottom: 1px solid #eee;
 
   @media only screen and (max-width: 500px) {
     width: 100vw;
@@ -221,26 +218,26 @@ const MobileMenu = styled.div`
   }
 `;
 
-export default function Header() {
+export default function Header({fade}) {
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false)
   const mobileMenu = useRef();
 
   const handleClickSearch = () => {
     setShowSearch(!showSearch);
-    header.classList.add("white");
   };
 
   const handleClickOutside = (e) => {
     if (e.target.id === "searchWrapper") {
       setShowSearch(false);
-      if (window.pageYOffset <= 0)
-      header.classList.remove("white");
     }
   };
 
+  const cartQuantity = useSelector(state => state.cart.quantity)
+  console.log(cartQuantity)
+
   return (
-    <Container id="header" classList='white'>
+    <Container id="header">
       {showSearch && (
         <SearchContainerWrapper
           id="searchWrapper"
@@ -297,7 +294,7 @@ export default function Header() {
           </MenuItem>
           <MenuItem>
             <Link to='/cart'>
-              <Badge badgeContent={3} color="primary">
+              <Badge badgeContent={cartQuantity} color="primary">
                 <ShoppingCartOutlined color="action" />
               </Badge>
             </Link>
@@ -306,13 +303,4 @@ export default function Header() {
       </Wrapper>
     </Container>
   );
-}
-
-window.onscroll = () => {
-  const header = document.getElementById('header')
-  if (window.pageYOffset > 0) {
-    header.classList.add("white");
-  } else {
-    header.classList.remove("white");
-  }
 }

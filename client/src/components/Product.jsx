@@ -4,6 +4,7 @@ import {
   ShoppingCartOutlined,
 } from "@material-ui/icons";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Icon = styled.div`
   opacity: 0;
@@ -32,15 +33,15 @@ const Icon = styled.div`
 `;
 
 const Title = styled.div`
-    margin-bottom: 20px;
-    color: gray;
+  margin-bottom: 20px;
+  color: gray;
 `;
 
 const Price = styled.div``;
 
 const Info = styled.div`
-    padding: 20px;
-    position: relative;
+  padding: 20px;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -62,8 +63,7 @@ const Container = styled.div`
   @media only screen and (max-width: 500px) {
     width: 100%;
     padding: 0;
-}
-
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -82,17 +82,23 @@ const Image = styled.img`
 `;
 
 const Product = ({ item }) => {
+  const navigate = useNavigate();
   return (
-    <Container>
+    <Container onClick={() => navigate(`/product/${item._id}`)}>
       <ImageContainer>
         <Image src={item.img} />
       </ImageContainer>
       <Info>
-        <Icon>
-          <FavoriteBorderOutlined style={{fontSize: "28px"}} />
+        <Icon
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate("/");
+          }}
+        >
+          <FavoriteBorderOutlined style={{ fontSize: "28px" }} />
         </Icon>
         <Title>{item.title || "Untitled"}</Title>
-        <Price>{item.price + '₽' || '5000₽'}</Price>
+        <Price>{item.price + "₽" || "5000₽"}</Price>
       </Info>
     </Container>
   );

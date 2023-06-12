@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import { publicRequest } from "../requestMethods";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Favorite, ShoppingCart } from "@material-ui/icons";
+import { Favorite, ShoppingCart, CheckCircle } from "@material-ui/icons";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { addProduct, removeProduct } from "../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Wrapper = styled.div`
   max-width: 1400px;
@@ -23,7 +29,6 @@ const ImgContainer = styled.div`
   flex: 1;
 
   @media only screen and (max-width: 500px) {
-    
   }
 `;
 const Image = styled.img`
@@ -32,7 +37,7 @@ const Image = styled.img`
   object-fit: cover;
 
   @media only screen and (max-width: 500px) {
-   height: 40vh;
+    height: 40vh;
   }
 `;
 
@@ -91,9 +96,14 @@ const FilterColor = styled.div`
   width: 22px;
   height: 22px;
   border-radius: 50%;
+  border: 1px solid lightgray;
   background-color: ${(props) => props.color};
   margin-right: 10px;
   cursor: pointer;
+
+  &.active {
+    border: 1px solid #333;
+  }
 `;
 
 const FilterSize = styled.div`
@@ -105,6 +115,12 @@ const FilterSize = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  user-select: none;
+
+  &.active {
+    border: 1px solid #333;
+    background-color: #eee;
+  }
 `;
 
 const AddContainer = styled.div`
@@ -148,50 +164,89 @@ const LikeButton = styled.div`
 `;
 
 const ProductPage = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState(null);
+  const [isInCart, setIsInCart] = useState(false);
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const res = await publicRequest.get("/products/find/" + id);
+      setProduct(res.data);
+    };
+    getProduct();
+  }, [id]);
+
+  useEffect(() => {
+    if (product) {
+      setSize(product.size[0]);
+      setColor(product.color[0])
+    }
+  }, [product]);
+
+  const handleClickCart = () => {
+    if (!isInCart) {
+      dispatch(addProduct({...product, quantity: 1, color, size }));
+    } else {
+      dispatch(removeProduct(product._id))
+    }
+    setIsInCart(!isInCart);
+  };
+
   return (
     <Container>
       <Header />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://images.unsplash.com/photo-1612878569417-a62601be8d7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" />
+          <Image src={product?.img} />
         </ImgContainer>
 
         <InfoContainer>
-          <Title>Sassy dress</Title>
-          <Desc>
-            Add a splash of personality to your wardrobe with our stylish
-            dress featuring a captivating pattern. Crafted from soft, breathable
-            fabric, this dress is comfortable and durable, making it perfect
-            for everyday wear. With its eye-catching design, this dress is
-            sure to turn heads wherever you go.
-          </Desc>
+          <Title>{product?.title}</Title>
+          <Desc>{product?.desc}</Desc>
           <Price>1000p</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color:</FilterTitle>
               <div className="panel">
-                <FilterColor color="black" />
-                <FilterColor color="darkblue" />
-                <FilterColor color="gray" />
+                {product?.color.map((c) => (
+                  <FilterColor className={"active"} color={c} key={c} />
+                ))}
               </div>
             </Filter>
             <Filter>
               <FilterTitle>Size:</FilterTitle>
               <div className="panel">
-                <FilterSize>XS</FilterSize>
-                <FilterSize>S</FilterSize>
-                <FilterSize>M</FilterSize>
-                <FilterSize>L</FilterSize>
+                {product?.size.map((s) => (
+                  <FilterSize
+                    className={size === s && "active"}
+                    onClick={() => setSize(s)}
+                    key={s}
+                  >
+                    {s}
+                  </FilterSize>
+                ))}
               </div>
             </Filter>
           </FilterContainer>
-          <AddContainer>
-            <AddButton>
-              <ShoppingCart />
-              ADD TO CART
-            </AddButton>
+          <AddContainer onClick={handleClickCart}>
+            {isInCart ? (
+              <AddButton>
+                <CheckCircle />
+                IN CART
+              </AddButton>
+            ) : (
+              <AddButton>
+                <ShoppingCart />
+                ADD TO CART
+              </AddButton>
+            )}
             <LikeButton>
-              <Favorite style={{fontSize: "30px"}} />
+              <Favorite style={{ fontSize: "30px" }} />
             </LikeButton>
           </AddContainer>
         </InfoContainer>

@@ -2,15 +2,18 @@ import { Add, ArrowBack, DeleteOutline, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import { useState, useEffect } from "react";
+import {userRequest} from '../requestMethods'
+import {useNavigate} from 'react-router-dom'
 
-const Container = styled.div`
-
-`;
+const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
   max-width: 1300px;
-margin: 0 auto;
-    margin-top: 90px;
+  margin: 0 auto;
+  margin-top: 90px;
 `;
 
 const Title = styled.h1`
@@ -18,9 +21,9 @@ const Title = styled.h1`
 `;
 
 const TitleContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const BackBtn = styled.button`
   padding: 10px;
@@ -36,7 +39,6 @@ const BackBtn = styled.button`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-
 `;
 
 const Info = styled.div`
@@ -69,24 +71,24 @@ const Details = styled.div`
 `;
 
 const ProductName = styled.span`
-    font-weight: bold;
-    margin-bottom: 2px;
+  font-weight: bold;
+  margin-bottom: 2px;
 `;
 
 const ProductId = styled.span`
-    color: gray;
-    font-size: 16px;
-    margin-bottom: 8px;
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 8px;
 `;
 
 const ProductColor = styled.span`
-    margin-bottom: 10px;
-    color: gray;
+  margin-bottom: 10px;
+  color: gray;
 `;
 
 const ProductSize = styled.span`
-    color: gray;
-    margin-bottom: 10px;
+  color: gray;
+  margin-bottom: 10px;
 `;
 
 const Right = styled.div`
@@ -101,7 +103,6 @@ const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   color: gray;
-
 
   & svg {
     cursor: pointer;
@@ -165,100 +166,113 @@ const Button = styled.button`
 `;
 
 const DeleteBtn = styled.button`
-    background-color: transparent;
-    border: none;
-    display: block;
-    color: gray;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: block;
+  color: gray;
+  cursor: pointer;
 
-    &:hover {
-        color: #333;
-    }
-`
+  &:hover {
+    color: #333;
+  }
+`;
 
 const Cart = () => {
+  const KEY = import.meta.env.VITE_STRIPE_KEY;
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate()
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try{
+        const res = await userRequest('/checkout/payment', {
+          tokenId: stripeId,
+          amount: cart.total * 100,
+        })
+        navigate('/success', { state: { data: res.data } });
+      } catch {}
+      makeRequest()
+    }
+  }, [stripeToken, cart.total, history])
+
   return (
     <Container>
       <Header />
       <Wrapper>
         <TitleContainer>
-            <Title>Your bag</Title>
-            <BackBtn><ArrowBack/>CONTINUE SHOPPING</BackBtn>
+          <Title>Your bag</Title>
+          <BackBtn>
+            <ArrowBack />
+            CONTINUE SHOPPING
+          </BackBtn>
         </TitleContainer>
-        
+
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.pexels.com/photos/4352249/pexels-photo-4352249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-                <Details>
-                  <ProductName>
-                    Flower pattern dress
-                  </ProductName>
-                  <ProductId>
-                    93813718293
-                  </ProductId>
-                  <ProductColor><b>Color:</b> Beige</ProductColor>
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                  <ProductAmountContainer>
-                  <Remove />
-                  <ProductAmount>1</ProductAmount>
-                  <Add />
-                </ProductAmountContainer>
-                </Details>
-              </ProductDetail>
-              <Right>
-                <DeleteBtn><DeleteOutline/></DeleteBtn>
-                <ProductPrice>5000p</ProductPrice>
-              </Right>
-            </Product>
+            {cart.products.map((product) => (
+              <Product>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>{product.title}</ProductName>
+                    <ProductId>{product._id}</ProductId>
+                    <ProductColor>
+                      <b>Color:</b> {product.color}
+                    </ProductColor>
+                    <ProductSize>
+                      <b>Size:</b> {product.size}
+                    </ProductSize>
+                    <ProductAmountContainer>
+                      <Remove />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Add />
+                    </ProductAmountContainer>
+                  </Details>
+                </ProductDetail>
+                <Right>
+                  <DeleteBtn>
+                    <DeleteOutline />
+                  </DeleteBtn>
+                  <ProductPrice>
+                    {product.price * product.quantity}p.
+                  </ProductPrice>
+                </Right>
+              </Product>
+            ))}
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://img.ostin.com/upload/mdm/media_content/resize/d54/265_357_1073/78690640299.jpg" />
-                <Details>
-                  <ProductName>
-                    Sassy blue dress
-                  </ProductName>
-                  <ProductId>
-                    93813718293
-                  </ProductId>
-                  <ProductColor><b>Color:</b> Blue</ProductColor>
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                  <ProductAmountContainer>
-                  <Remove />
-                  <ProductAmount>1</ProductAmount>
-                  <Add />
-                </ProductAmountContainer>
-                </Details>
-              </ProductDetail>
-              <Right>
-                <DeleteBtn><DeleteOutline/></DeleteBtn>
-                <ProductPrice>3000p</ProductPrice>
-              </Right>
-            </Product>
           </Info>
         </Bottom>
-          <Summary>
-            <SummaryTitle>Order summary</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice> 8000p</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Discount</SummaryItemText>
-              <SummaryItemPrice>0p</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>8000p</SummaryItemPrice>
-            </SummaryItem>
+        <Summary>
+          <SummaryTitle>Order summary</SummaryTitle>
+          <SummaryItem>
+            <SummaryItemText>Subtotal</SummaryItemText>
+            <SummaryItemPrice>{cart.total}</SummaryItemPrice>
+          </SummaryItem>
+          <SummaryItem>
+            <SummaryItemText>Discount</SummaryItemText>
+            <SummaryItemPrice>0p</SummaryItemPrice>
+          </SummaryItem>
+          <SummaryItem type="total">
+            <SummaryItemText>Total</SummaryItemText>
+            <SummaryItemPrice>{cart.total}</SummaryItemPrice>
+          </SummaryItem>
+          <StripeCheckout
+            name="Alex Fashion"
+            billingAddress
+            shippingAddress
+            description={`Your total is ${cart.total}p`}
+            amount={cart.total * 100}
+            token={onToken}
+            stripeKey={KEY}
+          >
             <Button>CHECKOUT NOW</Button>
-          </Summary>
+          </StripeCheckout>
+        </Summary>
       </Wrapper>
       <Footer />
     </Container>

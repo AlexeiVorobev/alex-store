@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 export default function Home() {
   return (
     <div>
-      <Header />
+      <Header fade={true} />
       <Carousel />
       <Wrapper>
         <Categories />
