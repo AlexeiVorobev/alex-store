@@ -3,7 +3,7 @@ import { publicRequest } from "../requestMethods";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Favorite, ShoppingCart, CheckCircle } from "@material-ui/icons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { addProduct, removeProduct } from "../redux/cartSlice";
@@ -173,6 +173,7 @@ const ProductPage = () => {
   const [color, setColor] = useState();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getProduct = async () => {
@@ -194,7 +195,7 @@ const ProductPage = () => {
     if (!isInCart) {
       dispatch(addProduct({...product, quantity: 1, color, size }));
     } else {
-      dispatch(removeProduct(product._id))
+      navigate(`/cart`)
     }
     setIsInCart(!isInCart);
   };
