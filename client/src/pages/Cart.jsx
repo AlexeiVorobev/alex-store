@@ -7,7 +7,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useState, useEffect } from "react";
 import {userRequest} from '../requestMethods'
 import {useNavigate} from 'react-router-dom'
-import { addProduct, removeProduct } from "../redux/cartSlice";
+import { addProduct, removeProduct, updateQuantity } from "../redux/cartSlice";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -236,9 +236,9 @@ const Cart = () => {
                       <b>Size:</b> {product.size}
                     </ProductSize>
                     <ProductAmountContainer>
-                      <Remove />
+                      <Remove onClick={() => product.quantity > 0 && dispatch(updateQuantity({id: product._id, quantity: product.quantity -1 }))} />
                       <ProductAmount>{product.quantity}</ProductAmount>
-                      <Add />
+                      <Add onClick={() => dispatch(updateQuantity({id: product._id, quantity: product.quantity +1 }))} />
                     </ProductAmountContainer>
                   </Details>
                 </ProductDetail>
