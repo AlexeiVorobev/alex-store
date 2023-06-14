@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { addProduct, removeProduct } from "../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addFav, removeFav } from "../redux/favoriteSlice";
 
 const Wrapper = styled.div`
   max-width: 1400px;
@@ -156,10 +157,10 @@ const LikeButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: gray;
+  color: ${props => props.isFav ? "#f44b4b" : "gray"};
 
   &:hover {
-    color: #f44b4b;
+    color: ${props => props.isFav ? "#f66969" : "#f44b4b"};
   }
 `;
 
@@ -168,9 +169,11 @@ const ProductPage = () => {
   const cart = useSelector((state) => state.cart);
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState(null);
-  const [isInCart, setIsInCart] = useState(false);
+  // const [isInCart, setIsInCart] = useState(false);
   const [size, setSize] = useState("");
   const [color, setColor] = useState();
+  const favorite = useSelector(state => state.favorite.products)
+  const isFav = favorite.filter(product => product._id === id).length !== 0 ? true : false;
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -181,7 +184,6 @@ const ProductPage = () => {
       setProduct(res.data);
     };
     getProduct();
-    setIsInCart(cart.products.filter(product => product._id === id).length != 0 ? true : false)
   }, [id]);
 
   useEffect(() => {
@@ -192,12 +194,7 @@ const ProductPage = () => {
   }, [product]);
 
   const handleClickCart = () => {
-    if (!isInCart) {
-      dispatch(addProduct({...product, quantity: 1, color, size }));
-    } else {
-      navigate(`/cart`)
-    }
-    setIsInCart(!isInCart);
+      dispatch(addProduct({...product, quantity: 1, color, size }));;
   };
 
   return (
@@ -237,18 +234,19 @@ const ProductPage = () => {
             </Filter>
           </FilterContainer>
           <AddContainer onClick={handleClickCart}>
-            {isInCart ? (
-              <AddButton>
-                <CheckCircle />
-                IN CART
-              </AddButton>
-            ) : (
+            
               <AddButton>
                 <ShoppingCart />
                 ADD TO CART
               </AddButton>
-            )}
-            <LikeButton>
+            <LikeButton isFav={isFav} onClick={(e) => {
+              e.stopPropagation()
+               if (!isFav) {
+                dispatch(addFav(product));
+              } else {
+                dispatch(removeFav(product))
+              }
+            }}>
               <Favorite style={{ fontSize: "30px" }} />
             </LikeButton>
           </AddContainer>

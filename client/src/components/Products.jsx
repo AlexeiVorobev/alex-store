@@ -3,6 +3,7 @@ import { popularProducts } from "../data";
 import Product from "./Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   padding: 20px;
@@ -19,6 +20,7 @@ const Container = styled.div`
 const Products = ({ cat, filters, sort, max }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const favorite = useSelector(state => state.favorite.products)
 
   const getProducts = async () => {
     try {
@@ -76,7 +78,7 @@ const Products = ({ cat, filters, sort, max }) => {
   return (
     <Container>
       {filteredProducts.map((item) => (
-        <Product item={item} key={item._id} />
+        <Product isFav={favorite.filter(product => product._id === item._id).length !== 0 ? true : false} item={item} key={item._id} />
       ))}
     </Container>
   );

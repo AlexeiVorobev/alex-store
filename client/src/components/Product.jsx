@@ -1,16 +1,14 @@
-import {
-  FavoriteBorderOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-} from "@material-ui/icons";
+import { Favorite } from "@material-ui/icons";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { addFav, removeFav } from "../redux/favoriteSlice";
+import { useDispatch } from "react-redux";
 
 const Icon = styled.div`
-  opacity: 0;
-  color: gray;
-  width: 40px;
-  height: 40px;
+  opacity: ${(props) => (props.isFav ? "1" : "0")};
+  color: ${(props) => (props.isFav ? "#f44b4b" : "#aaa")};
+  width: 35px;
+  height: 35px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -23,7 +21,7 @@ const Icon = styled.div`
   font-size: 40px;
 
   &:hover {
-    color: #222;
+    color: ${(props) => (props.isFav ? "#f66969" : "#333")};
     transform: scale(1.1);
   }
 
@@ -81,8 +79,9 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const Product = ({ item }) => {
+const Product = ({ item, isFav }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Container onClick={() => navigate(`/product/${item._id}`)}>
       <ImageContainer>
@@ -90,12 +89,17 @@ const Product = ({ item }) => {
       </ImageContainer>
       <Info>
         <Icon
+          isFav={isFav}
           onClick={(e) => {
             e.stopPropagation();
-            navigate("/");
+            if (!isFav) {
+              dispatch(addFav(item));
+            } else {
+              dispatch(removeFav(item));
+            }
           }}
         >
-          <FavoriteBorderOutlined style={{ fontSize: "28px" }} />
+          <Favorite style={{ fontSize: "28px" }} />
         </Icon>
         <Title>{item.title || "Untitled"}</Title>
         <Price>{item.price + "₽" || "5000₽"}</Price>
