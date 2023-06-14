@@ -2,19 +2,25 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const cart = JSON.parse(localStorage.getItem("cart"));
 
+const calculateTotal = (products) => {
+  let total = 0;
+  products.forEach((product) => {
+    total += product.price * product.quantity;
+  });
+  return total;
+};
+
 const cartSlice = createSlice({
     name: "cart",
     initialState: cart ? cart : {
         products: [],
-        quantity: 0,
         total: 0
     },
     reducers: {
          addProduct:(state, action) => {
-            state.quantity += 1;
             state.products.push(action.payload)
-            state.total += action.payload.price * action.payload.quantity
             localStorage.setItem('cart', JSON.stringify(state))
+            state.total = calculateTotal(state.products)
          },
          removeProduct: (state, action) => {
             const productId = action.payload;
@@ -23,12 +29,11 @@ const cartSlice = createSlice({
             );
       
             if (removedProduct) {
-              state.quantity -= 1;
               state.products = state.products.filter(
                 (product) => product._id !== productId
               );
-              state.total -= removedProduct.price;
             }
+            state.total = calculateTotal(state.products)
             localStorage.setItem('cart', JSON.stringify(state))
           },
           updateQuantity: (state, action) => {
@@ -36,12 +41,10 @@ const cartSlice = createSlice({
             const product = state.products.find((product) => product._id === id);
           
             if (product) {
-              const quantityDiff = quantity - product.quantity;
               product.quantity = quantity;
-              state.quantity += quantityDiff;
-              state.total += quantityDiff * product.price;
               localStorage.setItem("cart", JSON.stringify(state));
             }
+            state.total = calculateTotal(state.products)
           }
     }
 });
