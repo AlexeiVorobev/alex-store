@@ -17,18 +17,18 @@ const Container = styled.div`
   }
 `;
 
-const Products = ({ cat, filters, sort, max }) => {
+const Products = ({ cat, filters, sort, max, gender }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const favorite = useSelector(state => state.favorite.products)
+  const favorite = useSelector((state) => state.favorite.products);
 
   const getProducts = async () => {
     try {
       const res = await axios.get(
-        cat === 'all'
-        ? `http://localhost:5000/api/products`
-        : `http://localhost:5000/api/products?category=${cat}`
-        );
+        cat === "all"
+          ? `http://localhost:5000/api/products`
+          : `http://localhost:5000/api/products?category=${cat}`
+      );
       setProducts(res.data);
     } catch (err) {}
   };
@@ -40,45 +40,63 @@ const Products = ({ cat, filters, sort, max }) => {
   useEffect(() => {
     const filterProducts = () => {
       let filteredProducts = [...products];
-      
+
       // Apply size filter
       if (filters.sizes.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
           filters.sizes.some((size) => product.size.includes(size))
         );
       }
-      
+
       // Apply color filter
       if (filters.colors.length > 0) {
         filteredProducts = filteredProducts.filter((product) =>
           filters.colors.some((color) => product.color.includes(color))
         );
       }
-      
+
+      // Apply gender filter
+      if (gender) {
+        filteredProducts = filteredProducts.filter((product) =>
+          product.categories.includes(gender.toLowerCase())
+        );
+      }
+
       // Apply sorting
-      if (sort === 'newest') {
-        filteredProducts.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-      } else if (sort === 'price-asc') {
+      if (sort === "newest") {
+        182;
+        filteredProducts.sort(
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+        );
+      } else if (sort === "price-asc") {
         filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (sort === 'price-desc') {
+      } else if (sort === "price-desc") {
         filteredProducts.sort((a, b) => b.price - a.price);
       }
 
       if (max && filteredProducts.length > 8) {
-        filteredProducts = filteredProducts.slice(0, 8 )
+        filteredProducts = filteredProducts.slice(0, 8);
       }
-      
+
       setFilteredProducts(filteredProducts);
     };
-    
+
     // Call the filter function
     filterProducts();
-  }, [filters, products, sort]);
+  }, [filters, products, sort, gender]);
 
   return (
     <Container>
       {filteredProducts.map((item) => (
-        <Product isFav={favorite.filter(product => product._id === item._id).length !== 0 ? true : false} item={item} key={item._id} />
+        <Product
+          isFav={
+            favorite.filter((product) => product._id === item._id).length !== 0
+              ? true
+              : false
+          }
+          item={item}
+          key={item._id}
+        />
       ))}
     </Container>
   );

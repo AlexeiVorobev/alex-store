@@ -30,6 +30,7 @@ const ImgContainer = styled.div`
   flex: 1;
 
   @media only screen and (max-width: 500px) {
+    
   }
 `;
 const Image = styled.img`
@@ -38,7 +39,7 @@ const Image = styled.img`
   object-fit: cover;
 
   @media only screen and (max-width: 500px) {
-    height: 40vh;
+    height: 100%;
   }
 `;
 

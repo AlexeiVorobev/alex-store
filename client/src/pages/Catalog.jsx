@@ -113,7 +113,8 @@ const CheckboxGroup = styled.div`
 
 const Catalog = () => {
   const location = useLocation();
-  const cat = location.pathname.split("/")[2];
+  const cat = location.pathname.split("/")[3];
+  const gender = location.pathname.split("/")[2];
   const [filters, setFilters] = useState({
     sizes: [],
     colors: [],
@@ -138,33 +139,64 @@ const Catalog = () => {
         <Title>{cat}</Title>
         <Main>
           <Categories>
-            <Link to="/catalog/all">
-              <CategoryItem>All</CategoryItem>
-            </Link>
-            <Link to="/catalog/tops">
-              <CategoryItem>Tops/T-shirts</CategoryItem>
-            </Link>
-            <Link to="/catalog/shirts">
-              <CategoryItem>Shirts</CategoryItem>
-            </Link>
-            <Link to="/catalog/pants">
-              <CategoryItem>Pants/shorts</CategoryItem>
-            </Link>
-            <Link to="/catalog/dresses">
-              <CategoryItem>Dresses</CategoryItem>
-            </Link>
-            <Link to="/catalog/outerwear">
-              <CategoryItem>Outerwear</CategoryItem>
-            </Link>
-            <Link to="/catalog/suits">
-              <CategoryItem>Suits</CategoryItem>
-            </Link>
-            <Link to="/catalog/loungewear">
-              <CategoryItem>Loungewear</CategoryItem>
-            </Link>
-            <Link to="/catalog/accessories">
-              <CategoryItem>Accessories</CategoryItem>
-            </Link>
+            {gender === "women" ? (
+              <div>
+                <Link to="/catalog/women/all">
+                  <CategoryItem>All</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/tops">
+                  <CategoryItem>Tops/T-shirts</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/shirts">
+                  <CategoryItem>Shirts</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/pants">
+                  <CategoryItem>Pants/shorts</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/dresses">
+                  <CategoryItem>Dresses</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/outerwear">
+                  <CategoryItem>Outerwear</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/suits">
+                  <CategoryItem>Suits</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/loungewear">
+                  <CategoryItem>Loungewear</CategoryItem>
+                </Link>
+                <Link to="/catalog/women/accessories">
+                  <CategoryItem>Accessories</CategoryItem>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                 <Link to="/catalog/men/all">
+                  <CategoryItem>All</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/tshirts">
+                  <CategoryItem>T-shirts</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/shirts">
+                  <CategoryItem>Shirts</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/pants">
+                  <CategoryItem>Pants/shorts</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/outerwear">
+                  <CategoryItem>Outerwear</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/suits">
+                  <CategoryItem>Suits</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/loungewear">
+                  <CategoryItem>Loungewear</CategoryItem>
+                </Link>
+                <Link to="/catalog/men/accessories">
+                  <CategoryItem>Accessories</CategoryItem>
+                </Link>
+              </div>
+            )}
 
             <h4>Size</h4>
             <CheckboxGroup>
@@ -305,7 +337,7 @@ const Catalog = () => {
                 </Select>
               </Filter>
             </FilterContainer>
-            <Products cat={cat} filters={filters} sort={sort} />
+            <Products gender={gender} cat={cat} filters={filters} sort={sort} />
           </ProductList>
         </Main>
       </Wrapper>

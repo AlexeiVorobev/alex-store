@@ -12,6 +12,7 @@ import {
 import { Badge } from "@material-ui/core";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
 
@@ -77,7 +78,7 @@ const MenuItem = styled.div`
 
   & a {
     text-decoration: none;
-    color: gray;
+    color: ${props => props.active ? "#333" : "gray"};
   }
 
   @media only screen and (max-width: 500px) {
@@ -219,9 +220,12 @@ const MobileMenu = styled.div`
 `;
 
 export default function Header({fade}) {
+  const location = useLocation();
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false)
   const mobileMenu = useRef();
+
+  const cat = location.pathname.split("/")[2];
 
   const handleClickSearch = () => {
     setShowSearch(!showSearch);
@@ -247,6 +251,7 @@ export default function Header({fade}) {
           </SearchContainer>
         </SearchContainerWrapper>
       )}
+
       <MobileMenu ref={mobileMenu} isActive={showMenu}>
         <MobileClose>
           <button onClick={() => setShowMenu(false)}>
@@ -257,8 +262,11 @@ export default function Header({fade}) {
         <Link to='/'>
           <MobileMenuItem>Home</MobileMenuItem>
         </Link>
-        <Link to='/catalog/all'>
-          <MobileMenuItem>Catalog</MobileMenuItem>
+        <Link to='/catalog/women/all'>
+          <MobileMenuItem>Women</MobileMenuItem>
+        </Link>
+        <Link to='/catalog/men/all'>
+          <MobileMenuItem>Men</MobileMenuItem>
         </Link>
         <Link to='/my-account'>
           <MobileMenuItem>Login</MobileMenuItem>
@@ -268,12 +276,14 @@ export default function Header({fade}) {
           <Language className="mobile-only">EN <ArrowDropDown/></Language>
         </MobileMenuItem>
       </MobileMenu>
+
       <Wrapper>
         <Left>
           <SearchBtn>
             <SearchOutlined onClick={handleClickSearch} />
           </SearchBtn>
-          <MenuItem className="hide-on-mobile"><Link to='/catalog/all'>CATALOG</Link></MenuItem>
+          <MenuItem active={cat === "women" ? true : false} className="hide-on-mobile"><Link to='/catalog/women/all'>WOMEN</Link></MenuItem>
+          <MenuItem active={cat === "men" ? true : false} className="hide-on-mobile"><Link to='/catalog/men/all'>MEN</Link></MenuItem>
           <MenuBtn onClick={() => setShowMenu(true)}>
             <Menu />
           </MenuBtn>

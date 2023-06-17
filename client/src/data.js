@@ -1,27 +1,27 @@
-import Girl01 from "./assets/img/girl_04.png";
 import Girl02 from "./assets/img/girl_02.png";
 import Girl03 from "./assets/img/girl_03.png";
+import Guys01 from "./assets/img/guys_01.png"
 
 export const sliderItems = [
   {
     id: 1,
     img: Girl02,
-    title: "New summer collection",
+    title: "Summer collection",
     desc: "Get your style on point with our new summer collection.",
     bg: "#fcf7eb"
   },
   {
     id: 2,
-    img: Girl01,
-    title: "Spring sale",
-    desc: "Don't compromise on style. Get flat 30% off for our old collection.",
+    img: Guys01,
+    title: "Summer collection",
+    desc: "Not dressed sharp yet? look at our new men's collection.",
     bg: "#fceef1"
   },
   {
     id: 3,
     img: Girl03,
     title: "Loungewear love",
-    desc: "Everyone needs a hoodie. YOU need a hoodie. Go and get one.",
+    desc: "Want to be cool? Get one of our trendy hoodies.",
     bg: "#ebfcfa",
   },
 ];
