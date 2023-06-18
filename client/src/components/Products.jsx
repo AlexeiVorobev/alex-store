@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+const BASE_URL = "https://alex-store-api.onrender.com/api/"
+
 const Container = styled.div`
   padding: 20px;
   display: flex;
@@ -26,8 +28,8 @@ const Products = ({ cat, filters, sort, max, gender }) => {
     try {
       const res = await axios.get(
         cat === "all"
-          ? `http://localhost:5000/api/products`
-          : `http://localhost:5000/api/products?category=${cat}`
+          ? BASE_URL + 'products'
+          : `${BASE_URL}products?category=${cat}`
       );
       setProducts(res.data);
     } catch (err) {}
