@@ -44,7 +44,7 @@ const Title = styled.h1`
 export default function CategoryItem({item}) {
   return (
     <Container>
-        <Link to={`/catalog/${item.cat}`}>
+        <Link to={item.link}>
           <Image src={item.img} />
           <Info>
               <Title>{item.title}</Title>

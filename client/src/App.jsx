@@ -7,7 +7,7 @@ import Register from "./pages/MyAccount";
 import Cart from "./pages/Cart";
 import MyAccount from "./pages/MyAccount";
 import Favorite from "./pages/Favorite";
-import { BrowserRouter as Router, Routes,  Route } from "react-router-dom";
+import { HashRouter as Router, Routes,  Route } from "react-router-dom";
 import Catalog from './pages/Catalog'
 
 function App() {

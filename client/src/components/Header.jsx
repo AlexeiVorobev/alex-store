@@ -238,6 +238,7 @@ export default function Header({fade}) {
   };
 
   const cartQuantity = useSelector(state => state.cart.products.length)
+  const favQuantity = useSelector(state => state.favorite.products.length)
 
   return (
     <Container id="header">
@@ -298,7 +299,9 @@ export default function Header({fade}) {
           <MenuItem className="hide-on-mobile"><Link to='/my-account'>SIGN IN</Link></MenuItem>
           <MenuItem>
             <Link to='/favorite'>
+            <Badge badgeContent={favQuantity} color="primary">
               <FavoriteBorderOutlined color="action" />
+              </Badge>
             </Link>
           </MenuItem>
           <MenuItem>

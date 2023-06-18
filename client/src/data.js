@@ -1,28 +1,31 @@
+import Girl01 from "./assets/img/girl_01.png";
 import Girl02 from "./assets/img/girl_02.png";
-import Girl03 from "./assets/img/girl_03.png";
 import Guys01 from "./assets/img/guys_01.png"
 
 export const sliderItems = [
   {
     id: 1,
-    img: Girl02,
+    img: Girl01,
     title: "Summer collection",
     desc: "Get your style on point with our new summer collection.",
-    bg: "#fcf7eb"
+    bg: "#fcf7eb",
+    link: '/catalog/women/all'
   },
   {
     id: 2,
     img: Guys01,
     title: "Summer collection",
     desc: "Not dressed sharp yet? look at our new men's collection.",
-    bg: "#fceef1"
+    bg: "#fceef1",
+    link: '/catalog/men/all'
   },
   {
     id: 3,
-    img: Girl03,
+    img: Girl02,
     title: "Loungewear love",
     desc: "Want to be cool? Get one of our trendy hoodies.",
     bg: "#ebfcfa",
+    link: '/catalog/women/all'
   },
 ];
 
@@ -31,19 +34,22 @@ export const categories = [
     id: 1,
     img: "https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
     title: "SHIRTS",
-    cat: "shirts"
+    cat: "shirts",
+    link: '/catalog/women/shirts'
   },
   {
     id: 2,
     img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=840&q=80",
     title: "LOUNGEWEAR",
-    cat: "loungewear"
+    cat: "loungewear",
+    link: '/catalog/women/loungewear'
   },
   {
     id: 3,
     img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     title: "DRESSES",
-    cat: "dresses"
+    cat: "dresses",
+    link: '/catalog/women/dresses'
   },
 ];
 

@@ -181,7 +181,7 @@ export default function Carousel() {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
-              <Link to='/product'><Button>SHOP NOW</Button></Link>
+              <Link to={item.link}><Button>SHOP NOW</Button></Link>
             </InfoContainer>
           </Slide>
         ))}
