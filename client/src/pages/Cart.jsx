@@ -50,6 +50,10 @@ const Product = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const ProductDetail = styled.div`
@@ -62,6 +66,11 @@ const Image = styled.img`
   height: 250px;
   object-fit: cover;
   cursor: pointer;
+
+  @media only screen and (max-width: 500px) {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 const Details = styled.div`
@@ -100,6 +109,11 @@ const Right = styled.div`
   flex-direction: column;
   align-items: end;
   justify-content: space-between;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: row-reverse;
+    padding: 0 10px;
+  }
 `;
 
 const ProductAmountContainer = styled.div`
@@ -122,6 +136,10 @@ const ProductAmount = styled.div`
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 24px;
+  }
 `;
 
 const Hr = styled.hr`
