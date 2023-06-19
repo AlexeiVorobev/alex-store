@@ -209,7 +209,7 @@ const ProductPage = () => {
         <InfoContainer>
           <Title>{product?.title}</Title>
           <Desc>{product?.desc}</Desc>
-          <Price>1000p</Price>
+          <Price>{product?.price + 'p'}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color:</FilterTitle>
