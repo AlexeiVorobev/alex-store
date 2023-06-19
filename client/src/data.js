@@ -46,7 +46,7 @@ export const categories = [
   },
   {
     id: 3,
-    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    img: "https://images.unsplash.com/photo-1585487000261-3fc48269c3f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
     title: "DRESSES",
     cat: "dresses",
     link: '/catalog/women/dresses'
