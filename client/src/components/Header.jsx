@@ -135,8 +135,10 @@ const Right = styled.div`
   align-items: center;
   justify-content: end;
   flex: 1;
+  gap: 5px;
 
   @media only screen and (max-width: 500px) {
+
   }
 `;
 
