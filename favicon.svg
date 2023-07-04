@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1">
+    <rect
+       style="fill:#ffffff"
+       id="rect337"
+       width="120.13242"
+       height="120.13242"
+       x="-0.16524404"
+       y="0" />
+    <g
+       aria-label="ALEX"
+       id="text63"
+       style="font-weight:600;font-size:46.8895px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Semi-Bold';fill:#1a1a1a;stroke-width:0.488432">
+      <path
+         d="M 8.015119,98.036744 H 6.777406 L 37.617101,25.83679 38.751671,25.321077 64.743654,98.036744 H 55.976518 L 47.931381,75.345329 H 17.813686 Z M 34.419674,36.976211 18.226257,74.313901 h 29.395694 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold';stroke-width:1.0744"
+         id="path469" />
+      <path
+         d="M 113.22071,98.036744 H 74.026455 V 25.83679 h 8.56085 v 71.168524 h 30.633405 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold';stroke-width:1.0744"
+         id="path471" />
+    </g>
+  </g>
+</svg>
