@@ -10,7 +10,7 @@ import {
   ShoppingCartOutlined,
 } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -21,9 +21,9 @@ const Container = styled.div`
   left: 0;
   z-index: 2;
   width: 100%;
-  background-color: white;
+  background-color: ${props => props.shadow ? "white" : "transparent"};
   transition: background-color 0.1s ease;
-  border-bottom: 1px solid #eee;
+  box-shadow: ${props => props.shadow ? "0 4px 6px rgba(0, 0, 0, 0.2)" : "none"};
 
   @media only screen and (max-width: 500px) {
     width: 100vw;
@@ -226,8 +226,31 @@ export default function Header({fade}) {
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false)
   const mobileMenu = useRef();
+  const [shadow, setShadow] = useState(false);
 
   const cat = location.pathname.split("/")[2];
+  console.log(cat)
+
+  useEffect(() => {
+    const handleShadow = () => {
+      if (location.pathname !== "/") {
+        setShadow(true);
+      } else if (window.scrollY >= 90) {
+        setShadow(true);
+      } else {
+        setShadow(false);
+      }
+    };
+
+    handleShadow(); // Call handleShadow initially
+
+    window.addEventListener("scroll", handleShadow);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("scroll", handleShadow);
+    };
+  }, [location.pathname]);
 
   const handleClickSearch = () => {
     setShowSearch(!showSearch);
@@ -243,7 +266,7 @@ export default function Header({fade}) {
   const favQuantity = useSelector(state => state.favorite.products.length)
 
   return (
-    <Container id="header">
+    <Container shadow={shadow} id="header">
       {showSearch && (
         <SearchContainerWrapper
           id="searchWrapper"
