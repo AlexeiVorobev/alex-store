@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
 
-const BASE_URL = "https://alex-store-api.onrender.com/api/"
+const BASE_URL = "https://alex-store-api.onrender.com/api/";
 
 const Container = styled.div`
   padding: 20px;
@@ -19,7 +19,16 @@ const Container = styled.div`
   }
 `;
 
+const SpinnerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  width: 100%;
+`;
+
 const Products = ({ cat, filters, sort, max, gender }) => {
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const favorite = useSelector((state) => state.favorite.products);
@@ -28,11 +37,14 @@ const Products = ({ cat, filters, sort, max, gender }) => {
     try {
       const res = await axios.get(
         cat === "all"
-          ? BASE_URL + 'products'
+          ? BASE_URL + "products"
           : `${BASE_URL}products?category=${cat}`
       );
       setProducts(res.data);
-    } catch (err) {}
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -89,17 +101,24 @@ const Products = ({ cat, filters, sort, max, gender }) => {
 
   return (
     <Container>
-      {filteredProducts.map((item) => (
-        <Product
-          isFav={
-            favorite.filter((product) => product._id === item._id).length !== 0
-              ? true
-              : false
-          }
-          item={item}
-          key={item._id}
-        />
-      ))}
+      {loading ? (
+        <SpinnerContainer>
+          <CircularProgress />
+        </SpinnerContainer>
+      ) : (
+        filteredProducts.map((item) => (
+          <Product
+            isFav={
+              favorite.filter((product) => product._id === item._id).length !==
+              0
+                ? true
+                : false
+            }
+            item={item}
+            key={item._id}
+          />
+        ))
+      )}
     </Container>
   );
 };

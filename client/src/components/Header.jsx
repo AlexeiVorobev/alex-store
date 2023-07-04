@@ -229,7 +229,6 @@ export default function Header({fade}) {
   const [shadow, setShadow] = useState(false);
 
   const cat = location.pathname.split("/")[2];
-  console.log(cat)
 
   useEffect(() => {
     const handleShadow = () => {
