@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 120 120"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="alex-store-logo.svg"
+   inkscape:export-filename="..\repos\fashion-store\favicon.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="3.0258278"
+     inkscape:cx="-53.373824"
+     inkscape:cy="45.607355"
+     inkscape:window-width="3440"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="text63" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff"
+       id="rect337"
+       width="120.13242"
+       height="120.13242"
+       x="-0.16524404"
+       y="0" />
+    <g
+       aria-label="ALEX"
+       id="text63"
+       style="font-weight:600;font-size:46.8895px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Semi-Bold';fill:#1a1a1a;stroke-width:0.488432">
+      <path
+         d="M 8.015119,98.036744 H 6.777406 L 37.617101,25.83679 38.751671,25.321077 64.743654,98.036744 H 55.976518 L 47.931381,75.345329 H 17.813686 Z M 34.419674,36.976211 18.226257,74.313901 h 29.395694 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold';stroke-width:1.0744"
+         id="path469" />
+      <path
+         d="M 112.50323,98.036744 H 73.308978 V 25.83679 h 8.56085 v 71.168524 h 30.633402 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold';stroke-width:1.0744"
+         id="path471" />
+    </g>
+    <g
+       aria-label="ALEX"
+       id="text63-0"
+       style="font-weight:600;font-size:46.8895px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Semi-Bold';fill:#1a1a1a;stroke-width:0.488432">
+      <path
+         d="m 151.58218,77.007866 h -0.56267 l 14.01996,-32.82265 0.51578,-0.234447 11.81616,33.057097 h -3.98561 l -3.65738,-10.31569 h -13.69174 z m 12.00371,-27.758584 -7.36165,16.973999 h 13.36351 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold'"
+         id="path460" />
+      <path
+         d="m 199.40945,77.007866 h -17.81801 v -32.82265 h 3.89183 v 32.353755 h 13.92618 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold'"
+         id="path462" />
+      <path
+         d="m 222.7604,44.185216 v 0.468895 h -14.77019 v 14.06685 h 13.69173 v 0.468895 h -13.69173 v 17.349115 h 15.80176 v 0.468895 h -19.69359 v -32.82265 z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold'"
+         id="path464" />
+      <path
+         d="m 228.24645,77.007866 h -0.60956 l 8.487,-16.786441 -9.28412,-16.036209 h 3.93872 l 8.06499,13.879292 7.03342,-13.879292 h 0.56268 l -7.26787,14.441966 10.6908,18.380684 h -3.93872 L 236.45212,60.73721 Z"
+         style="font-weight:bold;font-family:Italiana;-inkscape-font-specification:'Italiana Bold'"
+         id="path466" />
+      <path
+         d="m -116.73974,98.37237 h -1.26582 l 17.62422,-34.858957 -19.27954,-33.30102 h 8.17921 l 16.747868,28.821929 14.605696,-28.821929 h 1.16847 l -15.092559,29.990378 11.926039,20.504435 10.27463,17.665164 h -8.1792 L -99.699734,64.584489 Z"
+         style="font-weight:bold;font-size:46.8895px;font-family:Italiana;-inkscape-font-specification:'Italiana Bold';fill:#1a1a1a;stroke-width:1.01428"
+         id="path466-0"
+         sodipodi:nodetypes="cccccccccccccc" />
+    </g>
+  </g>
+</svg>
