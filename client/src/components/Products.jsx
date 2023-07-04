@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
+import Spinner from "./Spinner";
 
 const BASE_URL = "https://alex-store-api.onrender.com/api/";
 
@@ -20,11 +21,7 @@ const Container = styled.div`
 `;
 
 const SpinnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20vh;
-  width: 100%;
+  
 `;
 
 const Products = ({ cat, filters, sort, max, gender }) => {
@@ -103,7 +100,7 @@ const Products = ({ cat, filters, sort, max, gender }) => {
     <Container>
       {loading ? (
         <SpinnerContainer>
-          <CircularProgress />
+          <Spinner />
         </SpinnerContainer>
       ) : (
         filteredProducts.map((item) => (
