@@ -1,7 +1,7 @@
 # alex-store
 
 Project Description:
-The project is an e-commerce website called "Alex Store" that offers a wide range of products for online shopping. The website provides a user-friendly interface for customers to browse and purchase products conveniently. It incorporates various features and functionalities to enhance the shopping experience.
+The project is a Full-Stack e-commerce application called "Alex Store" that offers a wide range of products for online shopping. The website provides a user-friendly interface for customers to browse and purchase products conveniently. It incorporates various features and functionalities to enhance the shopping experience.
 
 <a href="https://alexeivorobev.github.io/alex-store/">Live Preview</a>
 
