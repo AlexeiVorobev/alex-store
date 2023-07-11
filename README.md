@@ -3,7 +3,7 @@
 Project Description:
 The project is a Full-Stack e-commerce application called "Alex Store" that offers a wide range of products for online shopping. The website provides a user-friendly interface for customers to browse and purchase products conveniently. It incorporates various features and functionalities to enhance the shopping experience.
 
-<a href="https://alexeivorobev.github.io/alex-store/">Live Preview</a>
+<a href="https://alexvorobev.github.io/alex-store/">Live Preview</a>
 
 ## Key Features:
  - Product Listing: The website displays a collection of products in different categories, including women's and men's fashion. Users can explore the products and view detailed information about each item.
