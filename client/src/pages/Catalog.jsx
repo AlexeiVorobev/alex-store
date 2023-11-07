@@ -84,12 +84,11 @@ const CategoryItem = styled.div`
   border-bottom: 1px solid #cccc;
   cursor: pointer;
   color: gray;
-  /* text-transform: uppercase; */
   font-weight: 400;
   font-size: 16px;
 
   &:hover {
-    background-color: aliceblue;
+    color: #222;
   }
 `;
 
@@ -108,6 +107,9 @@ const CheckboxGroup = styled.div`
     flex-wrap: wrap;
     gap: 10px 4px;
     margin-bottom: 20px;
+  }
+  label {
+    width: fit-content;
   }
 `;
 
@@ -200,7 +202,7 @@ const Catalog = () => {
 
             <h4>Size</h4>
             <CheckboxGroup>
-              <label htmlFor="">
+              <label>
                 <input
                   name="sizes"
                   value="XS"
@@ -210,7 +212,7 @@ const Catalog = () => {
                 />
                 XS
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="sizes"
                   value="S"
@@ -220,7 +222,7 @@ const Catalog = () => {
                 />
                 S
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="sizes"
                   value="M"
@@ -230,7 +232,7 @@ const Catalog = () => {
                 />
                 M
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="sizes"
                   value="L"
@@ -244,7 +246,7 @@ const Catalog = () => {
 
             <h4>Color</h4>
             <CheckboxGroup>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="beige"
@@ -254,7 +256,7 @@ const Catalog = () => {
                 />
                 Beige
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="blue"
@@ -264,7 +266,7 @@ const Catalog = () => {
                 />
                 Blue
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="red"
@@ -274,7 +276,7 @@ const Catalog = () => {
                 />
                 Red
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="milky"
@@ -284,7 +286,7 @@ const Catalog = () => {
                 />
                 Milky
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="pink"
@@ -294,7 +296,7 @@ const Catalog = () => {
                 />
                 Pink
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="black"
@@ -304,7 +306,7 @@ const Catalog = () => {
                 />
                 Black
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="white"
@@ -314,7 +316,7 @@ const Catalog = () => {
                 />
                 White
               </label>
-              <label htmlFor="">
+              <label>
                 <input
                   name="colors"
                   value="gray"
