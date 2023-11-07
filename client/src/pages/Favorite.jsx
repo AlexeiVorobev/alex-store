@@ -12,11 +12,10 @@ const Container = styled.div`
   min-height: 70vh;
 `;
 
-const Wrapper = styled.div`
+const Products = styled.div`
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `;
 
 const Title = styled.h1`
@@ -28,15 +27,12 @@ const Title = styled.h1`
 const Favorite = () => {
   const favorite = useSelector((state) => state.favorite.products);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   return (
     <div>
       <Header />
       <Container>
         <Title>Favorite</Title>
-        <Wrapper>
+        <Products>
           {favorite.map((item) => (
             <Product
               isFav={
@@ -49,7 +45,7 @@ const Favorite = () => {
               key={item._id}
             />
           ))}
-        </Wrapper>
+        </Products>
       </Container>
       <Footer />
     </div>
