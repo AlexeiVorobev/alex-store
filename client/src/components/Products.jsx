@@ -3,8 +3,7 @@ import Product from "./Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
-import Spinner from "./Spinner";
+import ProductLoader from "./ProductLoader";
 
 const BASE_URL = "https://alex-store-api.onrender.com/api/";
 
@@ -12,15 +11,6 @@ const Container = styled.div`
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-  /* @media only screen and (max-width: 500px) {
-    justify-content: center;
-    flex-direction: column;
-  } */
-`;
-
-const SpinnerContainer = styled.div`
-  
 `;
 
 const Products = ({ cat, filters, sort, max, gender }) => {
@@ -96,13 +86,17 @@ const Products = ({ cat, filters, sort, max, gender }) => {
   }, [filters, products, sort, gender]);
 
   return (
-    <Container>
+    <>
       {loading ? (
-        <SpinnerContainer>
-          <Spinner />
-        </SpinnerContainer>
+        <Container>
+          <ProductLoader />
+          <ProductLoader />
+          <ProductLoader />
+          <ProductLoader />
+        </Container>
       ) : (
-        filteredProducts.map((item) => (
+        <Container>
+          {filteredProducts.map((item) => (
           <Product
             isFav={
               favorite.filter((product) => product._id === item._id).length !==
@@ -113,9 +107,11 @@ const Products = ({ cat, filters, sort, max, gender }) => {
             item={item}
             key={item._id}
           />
-        ))
+        ))}
+        </Container>
+        
       )}
-    </Container>
+    </>
   );
 };
 
