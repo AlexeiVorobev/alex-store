@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { publicRequest } from "../requestMethods";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Favorite, ShoppingCart, CheckCircle } from "@material-ui/icons";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Favorite, ShoppingCart } from "@material-ui/icons";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { addProduct, removeProduct } from "../redux/cartSlice";
+import { addProduct } from "../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../redux/favoriteSlice";
 
@@ -120,8 +120,8 @@ const FilterSize = styled.div`
   user-select: none;
 
   &.active {
-    border: 1px solid #333;
-    background-color: #eee;
+    border: none;
+    background-color: #ddd;
   }
 `;
 
@@ -167,17 +167,14 @@ const LikeButton = styled.div`
 
 const ProductPage = () => {
   const location = useLocation();
-  const cart = useSelector((state) => state.cart);
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState(null);
-  // const [isInCart, setIsInCart] = useState(false);
   const [size, setSize] = useState("");
   const [color, setColor] = useState();
   const favorite = useSelector(state => state.favorite.products)
   const isFav = favorite.filter(product => product._id === id).length !== 0 ? true : false;
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
 
   useEffect(() => {
     const getProduct = async () => {
