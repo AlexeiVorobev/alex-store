@@ -10,14 +10,13 @@ const BASE_URL = "https://alex-store-api.onrender.com/api/";
 
 const Container = styled.div`
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-  @media only screen and (max-width: 500px) {
+  /* @media only screen and (max-width: 500px) {
     justify-content: center;
     flex-direction: column;
-  }
+  } */
 `;
 
 const SpinnerContainer = styled.div`
