@@ -81,22 +81,36 @@ const Image = styled.img`
 const Product = ({ item, isFav }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const handleProductClick = (e) => {
+        e.stopPropagation();
+        if (!isFav) {
+            dispatch(addFav(item));
+        } else {
+            dispatch(removeFav(item));
+        }
+
+        navigate(`/product/${item._id}`);
+        window.scrollTo(0, 0);
+    };
+    const handleFavClick = e => {
+      e.stopPropagation();
+      if (!isFav) {
+          dispatch(addFav(item));
+      } else {
+          dispatch(removeFav(item));
+      }
+    }
+
     return (
-        <Container onClick={() => navigate(`/product/${item._id}`)}>
+        <Container onClick={handleProductClick}>
             <ImageContainer>
                 <Image src={item.img} />
             </ImageContainer>
             <Info>
                 <Icon
                     isFav={isFav}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        if (!isFav) {
-                            dispatch(addFav(item));
-                        } else {
-                            dispatch(removeFav(item));
-                        }
-                    }}
+                    onClick={handleFavClick}
                 >
                     <Favorite style={{ fontSize: "28px" }} />
                 </Icon>
